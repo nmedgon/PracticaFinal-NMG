@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title><!--Página de introducción-->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="titulo">
+            <img src="" alt="">
+            <h1>ROBERTO</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="#">Border</a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="borderstyle">
+
+        <div id="none">none</div>
+        <div id="solid">solid</div>
+        <div id="dashed">dashed</div>
+        <div id="double">double</div>
+        <div id="dotted">dotted</div>
+        <div id="groove">groove</div>
+        <div id="inset">inset</div>
+        <div id="outset">outset</div>
+        <div id="ridge">ridge</div>
+    </main>
+    <footer></footer>
+    <script>
+        function cambiarColor(e) {
+            if (e.type === "mouseover") {
+                if(none){
+                    e.currentTarget.style.border = "none";
+                }
+                else if(double){
+                    e.currentTarget.style.border = "double";
+                }
+                
+
+            } else {
+                e.currentTarget.style.border = "";
+            }
+        }
+
+
+        let none = document.getElementById('none'); 
+        let double = document.getElementById('double')
+        double.addEventListener('mouseover', cambiarColor)
+
+
+        let volver = document.getElementById('volver');
+        none.addEventListener('mouseover', cambiarColor); 
+        none.addEventListener('mouseout', cambiarColor);
+    </script>
+</body>
+</html>
