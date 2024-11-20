@@ -1,0 +1,32 @@
+.titulo{
+    background-color: #1E364D;
+    display: flex;
+    padding: 1%;
+    color: white;
+    align-items: center;
+    font-size: 25px;
+}
+
+.titulo img{
+    width: 5%;
+}
+
+nav ul{
+    display: flex;
+    background-color: #456782;
+    margin-top: 1px;
+    color: white;
+}
+
+nav ul li{
+    padding: 1%;
+}
+
+nav ul li:hover{
+    background-color: #1E364D;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
