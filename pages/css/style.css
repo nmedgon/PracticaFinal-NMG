@@ -65,6 +65,6 @@ a{
 
 .borderstyle div:hover {
     transform: scale(1.1); /*efecto ampliacion*/
-    border: 3px solid #A78BFA;
+    border: 7px solid #A78BFA;
     background-color: #333333;
 }
