@@ -11,56 +11,64 @@
     <header>
         <div class="titulo">
             <img src="" alt="">
-            <h1>ROBERTO</h1>
+            <h1>Estilos CSS</h1>
         </div>
         <nav>
             <ul>
                 <li><a href="../index.html">Inicio</a></li>
-                <li><a href="#">Border</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
+                <li><a href="pages/border.html">Bordes</a></li>
+                <li><a href="#">Sombras</a></li>
+                <li><a href="#">Transformaciones</a></li>
+                <li><a href="#">Transiciones</a></li>
+                <li><a href="#">Filtros</a></li>
+                <li><a href="#">Página de recursos</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="borderstyle">
 
-        <div id="none">none</div>
-        <div id="solid">solid</div>
-        <div id="dashed">dashed</div>
-        <div id="double">double</div>
-        <div id="dotted">dotted</div>
-        <div id="groove">groove</div>
-        <div id="inset">inset</div>
-        <div id="outset">outset</div>
-        <div id="ridge">ridge</div>
+        <div id="none" data-border="none">none</div>
+        <div id="solid" data-border="solid">solid</div>
+        <div id="dashed" data-border="dashed">dashed</div>
+        <div id="double" data-border="double">double</div>
+        <div id="dotted" data-border="dotted">dotted</div>
+        <div id="groove" data-border="groove">groove</div>
+        <div id="inset" data-border="inset">inset</div>
+        <div id="outset" data-border="outset">outset</div>
+        <div id="ridge" data-border="ridge">ridge</div>
+    
     </main>
+
     <footer></footer>
+
     <script>
-        function cambiarColor(e) {
-            if (e.type === "mouseover") {
-                if(none){
-                    e.currentTarget.style.border = "none";
+        document.querySelectorAll('.borderstyle div').forEach(div => {
+            div.setAttribute('data-original-text', div.textContent);
+            //Cambia el borde al pasar el raton
+            div.addEventListener('mouseover', (e) => {
+                e.currentTarget.style.borderStyle = e.currentTarget.dataset.border;
+            });
+
+            //Restaira el borde al quitar el raton
+            div.addEventListener('mouseout', (e) => {
+                e.currentTarget.style.borderStyle = "none";
+            });
+
+            //Mostrar codigo css
+            div.addEventListener('click', (e) => {
+                const isCodeDisplayed = e.currentTarget.textContent.includes("border:");
+                if (isCodeDisplayed) {
+                    //Si ya muestra el CSS, restaurar el texto original
+                    e.currentTarget.textContent = e.currentTarget.getAttribute('data-original-text');
+                } else {
+                    //Muestra el CSS
+                    const borderType = e.currentTarget.dataset.border;
+                    e.currentTarget.textContent = `border: 2px ${borderType} #A78BFA;`;
                 }
-                else if(double){
-                    e.currentTarget.style.border = "double";
-                }
-                
+            });
+        });
 
-            } else {
-                e.currentTarget.style.border = "";
-            }
-        }
-
-
-        let none = document.getElementById('none'); 
-        let double = document.getElementById('double')
-        double.addEventListener('mouseover', cambiarColor)
-
-
-        let volver = document.getElementById('volver');
-        none.addEventListener('mouseover', cambiarColor); 
-        none.addEventListener('mouseout', cambiarColor);
     </script>
 </body>
 </html>
