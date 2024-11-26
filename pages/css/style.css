@@ -79,6 +79,16 @@ a{
     line-height: 170%;
 }
 
+.contacto{
+    margin: 5%;
+    text-align: center;
+    align-items: center;
+}
+
+.contacto h2{
+    margin-bottom: 1%;
+}
+
 
 footer{
     display: flex;
