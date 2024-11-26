@@ -68,3 +68,31 @@ a{
     border: 7px solid #A78BFA;
     background-color: #333333;
 }
+
+.inicio{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 5%;
+    padding: 2%;
+    border: 10px ridge #A78BFA;
+    background-color: #333333;
+    line-height: 170%;
+}
+
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0 auto;
+    background: linear-gradient(#1C1C1C, rgba(167, 139, 250, 0.09));
+    padding-bottom: 1%;
+}
+
+footer img:hover{
+    transform: scale(1.1);
+    transition: all 0.3 ease;
+}
