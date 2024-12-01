@@ -69,6 +69,28 @@ a{
     background-color: #333333;
 }
 
+.shadowstyle{
+    margin: 5%;
+    display: grid;
+    gap: 2%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 100px);
+}
+
+.shadowstyle div{
+    text-align: center;
+    border: 0px solid #2C2C2C;
+    background-color: #2C2C2C;
+    color: #F0F0F0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 1%;
+    transition: all 0.3s ease;/*transicion*/
+}
+
 .inicio{
     width: 80%;
     margin: 0 auto;
