@@ -28,19 +28,15 @@
     </header>
 
     <main class="contacto">
-        <h2>Formulario de Contacto</h2>
-        <form action="mailto:medinagonzaleznoe@gmail.com" method="POST" enctype="text/plain">
-            <label for="name">Nombre:</label><br>
-            <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" required><br><br>
-
-            <label for="email">Correo electrónico:</label><br>
-            <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required><br><br>
-
-            <label for="ContactComment">Mensaje:</label><br>
-            <textarea id="ContactComment" name="message" rows="6" cols="30" placeholder="Escribe tu mensaje aquí" required></textarea><br><br>
-
-            <button type="submit">Enviar</button>
-        </form> 
+        
+        <form class="formulario">
+            <h2>¿Tienes algún problema o duda?</h2>
+            <div class="titulo">Contáctanos</div>
+            <input type="email" placeholder="Correo electrónico" class="entrada" required>
+            <textarea placeholder="Mensaje" required></textarea>
+             
+            <button>Enviar</button>
+        </form>
     </main>
 
     <footer>
