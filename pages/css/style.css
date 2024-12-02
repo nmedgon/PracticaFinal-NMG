@@ -91,6 +91,26 @@ a{
     transition: all 0.3s ease;/*transicion*/
 }
 
+.cursorstyle{
+    margin: 5%;
+    display: grid;
+    gap: 2%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 100px);
+}
+
+.cursorstyle div{
+    background-color: #2C2C2C;
+    color: #F0F0F0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 1%;
+    transition: all 0.3s ease;
+}
+
 .inicio{
     width: 80%;
     margin: 0 auto;
