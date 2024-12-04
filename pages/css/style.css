@@ -211,6 +211,17 @@ a{
     background-color: rebeccapurple;
 }
 
+.ubicacion{
+    text-align: center;
+    font-size: 20px;
+}
+
+.nosotros{
+    margin-top: 3%;
+    display: flex;
+    gap: 3%;
+}
+
 footer{
     display: flex;
     justify-content: space-between;
