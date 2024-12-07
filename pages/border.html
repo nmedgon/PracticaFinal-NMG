@@ -17,7 +17,7 @@
         <nav>
             <ul>
                 <li><a href="../index.html">Inicio</a></li>
-                <li><a href="border.html">Bordes</a></li>
+                <li class="seleccion"><a href="border.html">Bordes</a></li>
                 <li><a href="sombras.html">Sombras</a></li>
                 <li><a href="cursor.html">Cursores</a></li>
                 <li><a href="transformaciones.html">Transformaciones</a></li>
@@ -27,7 +27,9 @@
             </ul>
         </nav>
     </header>
-
+    <div id="copyNotification" class="copy-notification">
+        Código copiado al portapapeles
+    </div>
     <main class="borderstyle">
 
         <div id="none" data-border="none">none</div>
@@ -79,9 +81,23 @@
                     //Muestra el CSS
                     const borderType = e.currentTarget.dataset.border;
                     e.currentTarget.textContent = `border: 7px ${borderType} #A78BFA;`;
+                    navigator.clipboard.writeText(e.currentTarget.textContent)
+                        .then(() => {
+                            showCopyNotification();
+                        })
+                        .catch((err) => {
+                            console.error('Error al copiar al portapapeles: ', err);
+                        });
                 }
             });
         });
+        function showCopyNotification() {
+            const notification = document.getElementById('copyNotification');
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
 
     </script>
 </body>

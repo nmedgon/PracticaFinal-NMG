@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sombras</title><!--Página de sombras-->
+    <title>Transformaciones</title><!--Página de sombras-->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/logo.ico">
@@ -20,14 +20,16 @@
                 <li><a href="border.html">Bordes</a></li>
                 <li><a href="sombras.html">Sombras</a></li>
                 <li><a href="cursor.html">Cursores</a></li>
-                <li><a href="transformaciones.html">Transformaciones</a></li>
+                <li class="seleccion"><a href="transformaciones.html">Transformaciones</a></li>
                 <li><a href="#"></a></li>
                 <li><a href="#">Página de recursos</a></li>
                 <li><a href="ubicacion.html">¿Dónde estamos?</a></li>
             </ul>
         </nav>
     </header>
-
+    <div id="copyNotification" class="copy-notification">
+        Código copiado al portapapeles
+    </div>
     <main class="transformstyle">
         <div id="scale" data-transform="scale(0.75)">scale</div>
         <div id="scalex" data-transform="scaleX(0.5)">scalex</div>
@@ -73,9 +75,23 @@
                     //Muestra el CSS
                     const transform = e.currentTarget.dataset.transform;
                     e.currentTarget.textContent = `transform: ${transform};`;
+                    navigator.clipboard.writeText(e.currentTarget.textContent)
+                        .then(() => {
+                            showCopyNotification();
+                        })
+                        .catch((err) => {
+                            console.error('Error al copiar al portapapeles: ', err);
+                        });
                 }
             });
         });
+        function showCopyNotification() {
+            const notification = document.getElementById('copyNotification');
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
     </script>
 </body>
 </html>

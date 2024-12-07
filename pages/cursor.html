@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sombras</title><!--Página de sombras-->
+    <title>Cursores</title><!--Página de sombras-->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/logo.ico">
@@ -19,7 +19,7 @@
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="border.html">Bordes</a></li>
                 <li><a href="sombras.html">Sombras</a></li>
-                <li><a href="cursor.html">Cursores</a></li>
+                <li class="seleccion"><a href="cursor.html">Cursores</a></li>
                 <li><a href="transformaciones.html">Transformaciones</a></li>
                 <li><a href="#"></a></li>
                 <li><a href="#">Página de recursos</a></li>
@@ -27,14 +27,37 @@
             </ul>
         </nav>
     </header>
-
+    <div id="copyNotification" class="copy-notification">
+        Código copiado al portapapeles
+    </div>
     <main class="cursorstyle">
-        <div id="auto" data-cursor="auto">auto</div>
+        <div id="default" data-cursor="default">default</div>
         <div id="pointer" data-cursor="pointer">pointer</div>
+        <div id="text" data-cursor="text">text</div>
         <div id="crosshair" data-cursor="crosshair">crosshair</div>
         <div id="wait" data-cursor="wait">wait</div>
+        <div id="help" data-cursor="help">help</div>
+        <div id="progress" data-cursor="progress">progress</div>
         <div id="notallow" data-cursor="not-allowed">not-allowed</div>
+        <div id="move" data-cursor="move">move</div>
+        <div id="grab" data-cursor="grab">grab</div>
+        <div id="grabbing" data-cursor="grabbing">grabbing</div>
+        <div id="no-drop" data-cursor="no-drop">no-drop</div>
         <div id="zoomin" data-cursor="zoom-in">zoom-in</div>
+        <div id="zoomout" data-cursor="zoom-out">zoom-out</div>
+        <div id="colresize" data-cursor="col-resize">col-resize</div>
+        <div id="rowresize" data-cursor="row-resize">row-resize</div>
+        <div id="nresize" data-cursor="n-resize">n-resize</div>
+        <div id="sresize" data-cursor="s-resize">s-resize</div>
+        <div id="eresize" data-cursor="e-resize">e-resize</div>
+        <div id="wresize" data-cursor="w-resize">w-resize</div>
+        <div id="neresize" data-cursor="ne-resize">ne-resize</div>
+        <div id="nwresize" data-cursor="nw-resize">nw-resize</div>
+        <div id="seresize" data-cursor="se-resize">se-resize</div>
+        <div id="swresize" data-cursor="sw-resize">sw-resize</div>
+        <div id="cell" data-cursor="cell">cell</div>
+        <div id="alias" data-cursor="alias">alias</div>
+        <div id="copy" data-cursor="copy">copy</div>
     </main>
     
     <footer>
@@ -53,7 +76,7 @@
     <script><!---->
         document.querySelectorAll('.cursorstyle div').forEach(div => {
             div.setAttribute('data-original-text', div.textContent);
-            //Cambia la sombra al pasar el ratón
+            //Cambia el cursor al pasar el ratón
             div.addEventListener('mouseover', (e) => {
                 e.currentTarget.style.cursor = e.currentTarget.dataset.cursor;
             });
@@ -73,9 +96,23 @@
                     //Muestra el CSS
                     const cursor = e.currentTarget.dataset.cursor;
                     e.currentTarget.textContent = `cursor: ${cursor};`;
+                    navigator.clipboard.writeText(e.currentTarget.textContent)
+                        .then(() => {
+                            showCopyNotification();
+                        })
+                        .catch((err) => {
+                            console.error('Error al copiar al portapapeles: ', err);
+                        });
                 }
             });
         });
+        function showCopyNotification() {
+            const notification = document.getElementById('copyNotification');
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
     </script>
 </body>
 </html>
