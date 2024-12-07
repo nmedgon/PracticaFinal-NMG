@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contáctanos</title><!--Página de contacto-->
+    <title>Gradiente</title><!--Página de sombras-->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/logo.ico">
@@ -22,24 +22,22 @@
                 <li><a href="cursor.html">Cursores</a></li>
                 <li><a href="transformaciones.html">Transformaciones</a></li>
                 <li><a href="texto.html">Textos</a></li>
-                <li><a href="gradient.html">Gradiente</a></li>
+                <li class="seleccion"><a href="gradient.html">Gradiente</a></li>
                 <li><a href="#">Página de recursos</a></li>
                 <li><a href="ubicacion.html">¿Dónde estamos?</a></li>
             </ul>
         </nav>
     </header>
-
-    <main class="contacto">
-        
-        <form class="formulario" id="contactForm">
-            <h2>¿Tienes algún problema o duda?</h2>
-            <div class="titulo">Contáctanos</div>
-            <input type="email" id="email" placeholder="Correo electrónico" class="entrada" required>
-            <textarea id="message" placeholder="Mensaje" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
+    <div id="copyNotification" class="copy-notification">
+        Código copiado al portapapeles
+    </div>
+    <main class="gradientstyle">
+        <div id="top-to-bottom" data-gradient="linear-gradient(to bottom, #FF8C66, #C70039)">Gradiente Arriba a Abajo</div>
+        <div id="left-to-right" data-gradient="linear-gradient(to right, #00BFFF, #0A3981)">Gradiente Izquierda a Derecha</div>
+        <div id="diagonal-gradient" data-gradient="linear-gradient(to bottom right, #9B57E6, #4B0082)">Gradiente Diagonal</div>
+        <div id="multi-gradient" data-gradient="linear-gradient(to right, #FF6347, #FFD700, #ADFF2F)">Gradiente Multicolor</div>
     </main>
-
+    
     <footer>
         <div>
             &copy; NoeMG
@@ -53,36 +51,51 @@
             <a href="contacto.html">Contacto</a>
         </div>
     </footer>
-
-<script src="https://cdn.emailjs.com/dist/email.min.js">
-    // Inicializa EmailJS con tu User ID
-    (function() {
-        emailjs.init("LLA9RvVd2E_oAYPKt"); // Reemplaza "tu_user_id" con tu User ID de EmailJS
-    })();
-
-    // Manejar el envío del formulario
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Obtener los valores del formulario
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        const templateParams = {
-            email: email, // El correo electrónico ingresado
-            message: message // El mensaje ingresado
-        };
-
-        // Enviar los datos del formulario a la plantilla configurada en EmailJS
-        emailjs.send("service_r4qgha7", "template_kjki5dh", templateParams)
-            .then(function(response) {
-                console.log("Correo enviado con éxito", response);
-                alert('Tu mensaje ha sido enviado.');
-            }, function(error) {
-                console.error("Error al enviar correo", error);
-                alert('Hubo un error al enviar tu mensaje. Intenta de nuevo.');
+    <script>
+        document.querySelectorAll('.gradientstyle div').forEach(div => {
+            // Guardar el texto original
+            div.setAttribute('data-original-text', div.textContent);
+            
+            // Cambia el gradiente al pasar el ratón
+            div.addEventListener('mouseover', (e) => {
+                e.currentTarget.style.background = e.currentTarget.dataset.gradient;
             });
-    });
-</script>
+
+            // Restaura el gradiente al quitar el ratón
+            div.addEventListener('mouseout', (e) => {
+                e.currentTarget.style.background = "#2C2C2C";  // Mantener el fondo original
+            });
+
+            // Mostrar código CSS al hacer clic
+            div.addEventListener('click', (e) => {
+                const isCodeDisplayed = e.currentTarget.textContent.includes("background:");
+                
+                if (isCodeDisplayed) {
+                    // Si ya muestra el CSS, restaurar el texto original
+                    e.currentTarget.textContent = e.currentTarget.getAttribute('data-original-text');
+                    e.currentTarget.style.background = e.currentTarget.dataset.gradient;
+                } else {
+                    // Muestra el CSS
+                    const gradientType = e.currentTarget.dataset.gradient;
+                    e.currentTarget.textContent = `background: ${gradientType};`;
+                    navigator.clipboard.writeText(e.currentTarget.textContent)
+                        .then(() => {
+                            showCopyNotification();
+                        })
+                        .catch((err) => {
+                            console.error('Error al copiar al portapapeles: ', err);
+                        });
+                }
+            });
+        });
+
+        function showCopyNotification() {
+            const notification = document.getElementById('copyNotification');
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+    </script>
 </body>
 </html>

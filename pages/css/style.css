@@ -194,15 +194,38 @@ a{
     transition: all 0.3s ease;
 }
 
+.gradientstyle{
+    margin: 5%;
+    display: grid;
+    gap: 2%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 200px);
+}
+
+.gradientstyle div{
+    border-radius: 10px;
+    background-color: #2C2C2C;
+    color: #F0F0F0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 1%;
+    transition: all 0.3s ease;
+}
+
 .inicio{
+    text-align: center;
     width: 80%;
     margin: 0 auto;
     margin-top: 5%;
     padding: 2%;
     border: 10px ridge #A78BFA;
     background-color: #333333;
-    line-height: 170%;
+    line-height: 200%;
     border-radius: 10px;
+    font-size: 20px;
 }
 
 .contacto{
@@ -290,14 +313,12 @@ a{
 
 footer{
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
     position: fixed;
     bottom: 0;
     width: 100%;
     margin: 0 auto;
-    background: linear-gradient(#1C1C1C, rgba(167, 139, 250, 0.09));
-    padding-bottom: 1%;
 }
 
 footer img:hover{
