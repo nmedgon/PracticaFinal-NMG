@@ -7,6 +7,32 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/logo.ico">
+    <style>
+        .send-notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            padding: 10px;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .send-notification.success {
+            background-color: #28a745; /* Verde */
+        }
+
+        .send-notification.error {
+            background-color: #dc3545; /* Rojo */
+        }
+
+        .send-notification.show {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -28,7 +54,7 @@
             </ul>
         </nav>
     </header>
-
+    <div id="sendNotification" class="send-notification"></div>
     <main class="contacto">
         
         <form class="formulario" id="contactForm">
@@ -57,9 +83,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        // Inicializa EmailJS con tu User ID
         (function() {
-            emailjs.init("LLA9RvVd2E_oAYPKt"); // Reemplaza "tu_user_id" con tu User ID de EmailJS
+            emailjs.init("LLA9RvVd2E_oAYPKt");
         })();
 
         // Manejar el envío del formulario
@@ -74,17 +99,28 @@
                 email: email, // El correo electrónico ingresado
                 message: message // El mensaje ingresado
             };
-
-            // Enviar los datos del formulario a la plantilla configurada en EmailJS
+ 
             emailjs.send("service_r4qgha7", "template_kjki5dh", templateParams)
                 .then(function(response) {
-                    console.log("Correo enviado con éxito", response);
-                    alert('Tu mensaje ha sido enviado.');
+                    showSendNotification('Tu mensaje ha sido enviado con éxito.', 'success');
                 }, function(error) {
-                    console.error("Error al enviar correo", error);
-                    alert('Hubo un error al enviar tu mensaje. Intenta de nuevo.');
+                    showSendNotification('Hubo un error al enviar tu mensaje. Intenta de nuevo.', 'error');
                 });
         });
+
+        function showSendNotification(message, type) {
+            const notification = document.getElementById('sendNotification');
+            notification.textContent = message;
+
+            // Añadir clase según el tipo
+            notification.className = `send-notification ${type} show`;
+
+            // Ocultar notificación después de 2 segundos
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+
     </script>
 </body>
 </html>
