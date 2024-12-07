@@ -54,35 +54,37 @@
         </div>
     </footer>
 
-<script src="https://cdn.emailjs.com/dist/email.min.js">
-    // Inicializa EmailJS con tu User ID
-    (function() {
-        emailjs.init("LLA9RvVd2E_oAYPKt"); // Reemplaza "tu_user_id" con tu User ID de EmailJS
-    })();
 
-    // Manejar el envío del formulario
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // Inicializa EmailJS con tu User ID
+        (function() {
+            emailjs.init("LLA9RvVd2E_oAYPKt"); // Reemplaza "tu_user_id" con tu User ID de EmailJS
+        })();
 
-        // Obtener los valores del formulario
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
+        // Manejar el envío del formulario
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-        const templateParams = {
-            email: email, // El correo electrónico ingresado
-            message: message // El mensaje ingresado
-        };
+            // Obtener los valores del formulario
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
 
-        // Enviar los datos del formulario a la plantilla configurada en EmailJS
-        emailjs.send("service_r4qgha7", "template_kjki5dh", templateParams)
-            .then(function(response) {
-                console.log("Correo enviado con éxito", response);
-                alert('Tu mensaje ha sido enviado.');
-            }, function(error) {
-                console.error("Error al enviar correo", error);
-                alert('Hubo un error al enviar tu mensaje. Intenta de nuevo.');
-            });
-    });
-</script>
+            const templateParams = {
+                email: email, // El correo electrónico ingresado
+                message: message // El mensaje ingresado
+            };
+
+            // Enviar los datos del formulario a la plantilla configurada en EmailJS
+            emailjs.send("service_r4qgha7", "template_kjki5dh", templateParams)
+                .then(function(response) {
+                    console.log("Correo enviado con éxito", response);
+                    alert('Tu mensaje ha sido enviado.');
+                }, function(error) {
+                    console.error("Error al enviar correo", error);
+                    alert('Hubo un error al enviar tu mensaje. Intenta de nuevo.');
+                });
+        });
+    </script>
 </body>
 </html>
