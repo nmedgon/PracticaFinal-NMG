@@ -15,7 +15,8 @@
             <h1>VisualCSS</h1>
         </div>
         <nav>
-            <ul>
+            <button class="menumovil">☰</button>
+            <ul class="navegacion">
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="border.html">Bordes</a></li>
                 <li><a href="sombras.html">Sombras</a></li>
@@ -31,13 +32,16 @@
     <div id="copyNotification" class="copy-notification">
         Código copiado al portapapeles
     </div>
-    <main class="transformstyle">
-        <div id="scale" data-transform="scale(0.75)">scale</div>
-        <div id="scalex" data-transform="scaleX(0.5)">scalex</div>
-        <div id="rotate" data-transform="rotate(45deg)">rotate</div>
-        <div id="skewX" data-transform="skewX(-25deg)">skewX</div>
-        <div id="skew" data-transform="skew(20deg, 5deg)">skew</div>
-        <div id="translate" data-transform="translate(5px, 12px)">translate</div>
+    <main>
+        <div class="transformstyle">
+            <div id="scale" data-transform="scale(0.75)">scale</div>
+            <div id="scalex" data-transform="scaleX(0.5)">scalex</div>
+            <div id="rotate" data-transform="rotate(45deg)">rotate</div>
+            <div id="skewX" data-transform="skewX(-25deg)">skewX</div>
+            <div id="skew" data-transform="skew(20deg, 5deg)">skew</div>
+            <div id="translate" data-transform="translate(5px, 12px)">translate</div>
+        </div>
+        
     </main>
     
     <footer>
@@ -93,6 +97,11 @@
                 notification.classList.remove('show');
             }, 2000);
         }
+
+        document.querySelector('.menumovil').addEventListener('click', function() {
+            const navList = document.querySelector('.navegacion');
+            navList.classList.toggle('show');
+        });
     </script>
 </body>
 </html>

@@ -15,7 +15,8 @@
             <h1>VisualCSS</h1><!--Título de la página-->
         </div>
         <nav><!--Barra de navegación-->
-            <ul>
+            <button class="menumovil">☰</button>
+            <ul class="navegacion">
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="border.html">Bordes</a></li>
                 <li><a href="sombras.html">Sombras</a></li>
@@ -54,5 +55,11 @@
             <a href="contacto.html">Contacto</a>
         </div>
     </footer>
+    <script>
+        document.querySelector('.menumovil').addEventListener('click', function() {
+            const navList = document.querySelector('.navegacion');
+            navList.classList.toggle('show');
+        });
+    </script>
 </body>
 </html>

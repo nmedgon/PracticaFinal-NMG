@@ -15,7 +15,8 @@
             <h1>VisualCSS</h1>
         </div>
         <nav>
-            <ul>
+            <button class="menumovil">☰</button>
+            <ul class="navegacion">
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="border.html">Bordes</a></li>
                 <li><a href="sombras.html">Sombras</a></li>
@@ -32,15 +33,18 @@
         Código copiado al portapapeles
     </div>
 
-    <main class="textstyle">
-        <div data-code="font-family: 'Courier New', monospace;">Courier New</div>
-        <div data-code="font-size: 24px;">Texto Grande</div>
-        <div data-code="font-size: 10px;">Texto Pequeño</div>
-        <div data-code="letter-spacing: 5px;">Espaciado</div>
-        <div data-code="text-transform: uppercase;">Mayusculas</div>
-        <div data-code="font-weight: bold;">Negrita</div>
-        <div data-code="font-style: italic;">Cursiva</div>
-        <div data-code="text-decoration: underline;">Subrayado</div>
+    <main>
+        <div class="textstyle">
+            <div data-code="font-family: 'Courier New', monospace;">Courier New</div>
+            <div data-code="font-size: 24px;">Texto Grande</div>
+            <div data-code="font-size: 10px;">Texto Pequeño</div>
+            <div data-code="letter-spacing: 5px;">Espaciado</div>
+            <div data-code="text-transform: uppercase;">Mayusculas</div>
+            <div data-code="font-weight: bold;">Negrita</div>
+            <div data-code="font-style: italic;">Cursiva</div>
+            <div data-code="text-decoration: underline;">Subrayado</div>
+        </div>
+        
     </main>
     
     <footer>
@@ -100,6 +104,11 @@
                 notification.classList.remove('show');
             }, 2000);
         }
+
+        document.querySelector('.menumovil').addEventListener('click', function() {
+            const navList = document.querySelector('.navegacion');
+            navList.classList.toggle('show');
+        });
     </script>
 </body>
 </html>

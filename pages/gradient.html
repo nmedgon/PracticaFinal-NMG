@@ -15,7 +15,8 @@
             <h1>VisualCSS</h1>
         </div>
         <nav>
-            <ul>
+            <button class="menumovil">☰</button>
+            <ul class="navegacion">
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="border.html">Bordes</a></li>
                 <li><a href="sombras.html">Sombras</a></li>
@@ -31,11 +32,14 @@
     <div id="copyNotification" class="copy-notification">
         Código copiado al portapapeles
     </div>
-    <main class="gradientstyle">
-        <div id="top-to-bottom" data-gradient="linear-gradient(to bottom, #FF8C66, #C70039)">Gradiente Arriba a Abajo</div>
-        <div id="left-to-right" data-gradient="linear-gradient(to right, #00BFFF, #0A3981)">Gradiente Izquierda a Derecha</div>
-        <div id="diagonal-gradient" data-gradient="linear-gradient(to bottom right, #9B57E6, #4B0082)">Gradiente Diagonal</div>
-        <div id="multi-gradient" data-gradient="linear-gradient(to right, #FF6347, #FFD700, #ADFF2F)">Gradiente Multicolor</div>
+    <main>
+        <div  class="gradientstyle">
+            <div id="top-to-bottom" data-gradient="linear-gradient(to bottom, #FF8C66, #C70039)">Gradiente Arriba a Abajo</div>
+            <div id="left-to-right" data-gradient="linear-gradient(to right, #00BFFF, #0A3981)">Gradiente Izquierda a Derecha</div>
+            <div id="diagonal-gradient" data-gradient="linear-gradient(to bottom right, #9B57E6, #4B0082)">Gradiente Diagonal</div>
+            <div id="multi-gradient" data-gradient="linear-gradient(to right, #FF6347, #FFD700, #ADFF2F)">Gradiente Multicolor</div>
+        </div>
+        
     </main>
     
     <footer>
@@ -96,6 +100,11 @@
                 notification.classList.remove('show');
             }, 2000);
         }
+
+        document.querySelector('.menumovil').addEventListener('click', function() {
+            const navList = document.querySelector('.navegacion');
+            navList.classList.toggle('show');
+        });
     </script>
 </body>
 </html>

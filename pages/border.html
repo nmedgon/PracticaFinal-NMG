@@ -15,7 +15,8 @@
             <h1>VisualCSS</h1>
         </div>
         <nav>
-            <ul>
+            <button class="menumovil">☰</button>
+            <ul class="navegacion">
                 <li><a href="../index.html">Inicio</a></li>
                 <li class="seleccion"><a href="border.html">Bordes</a></li>
                 <li><a href="sombras.html">Sombras</a></li>
@@ -31,18 +32,18 @@
     <div id="copyNotification" class="copy-notification">
         Código copiado al portapapeles
     </div>
-    <main class="borderstyle">
-
-        <div id="none" data-border="none">none</div>
-        <div id="solid" data-border="solid">solid</div>
-        <div id="dashed" data-border="dashed">dashed</div>
-        <div id="double" data-border="double">double</div>
-        <div id="dotted" data-border="dotted">dotted</div>
-        <div id="groove" data-border="groove">groove</div>
-        <div id="inset" data-border="inset">inset</div>
-        <div id="outset" data-border="outset">outset</div>
-        <div id="ridge" data-border="ridge">ridge</div>
-    
+    <main>
+        <div class="borderstyle">
+            <div id="none" data-border="none">none</div>
+            <div id="solid" data-border="solid">solid</div>
+            <div id="dashed" data-border="dashed">dashed</div>
+            <div id="double" data-border="double">double</div>
+            <div id="dotted" data-border="dotted">dotted</div>
+            <div id="groove" data-border="groove">groove</div>
+            <div id="inset" data-border="inset">inset</div>
+            <div id="outset" data-border="outset">outset</div>
+            <div id="ridge" data-border="ridge">ridge</div>
+        </div>
     </main>
 
     <footer>
@@ -99,6 +100,11 @@
                 notification.classList.remove('show');
             }, 2000);
         }
+
+        document.querySelector('.menumovil').addEventListener('click', function() {
+            const navList = document.querySelector('.navegacion');
+            navList.classList.toggle('show');
+        });
 
     </script>
 </body>

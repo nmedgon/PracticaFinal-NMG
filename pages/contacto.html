@@ -41,7 +41,8 @@
             <h1>VisualCSS</h1>
         </div>
         <nav>
-            <ul>
+            <button class="menumovil">☰</button>
+            <ul class="navegacion">
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="border.html">Bordes</a></li>
                 <li><a href="sombras.html">Sombras</a></li>
@@ -55,15 +56,17 @@
         </nav>
     </header>
     <div id="sendNotification" class="send-notification"></div>
-    <main class="contacto">
+    <main>
+        <div class="contacto">
+            <form class="formulario" id="contactForm">
+                <h2>¿Tienes algún problema o duda?</h2>
+                <div class="titulo">Contáctanos</div>
+                <input type="email" id="email" placeholder="Correo electrónico" class="entrada" required>
+                <textarea id="message" placeholder="Mensaje" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
         
-        <form class="formulario" id="contactForm">
-            <h2>¿Tienes algún problema o duda?</h2>
-            <div class="titulo">Contáctanos</div>
-            <input type="email" id="email" placeholder="Correo electrónico" class="entrada" required>
-            <textarea id="message" placeholder="Mensaje" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
     </main>
 
     <footer>
@@ -120,6 +123,11 @@
                 notification.classList.remove('show');
             }, 2000);
         }
+
+        document.querySelector('.menumovil').addEventListener('click', function() {
+            const navList = document.querySelector('.navegacion');
+            navList.classList.toggle('show');
+        });
 
     </script>
 </body>
