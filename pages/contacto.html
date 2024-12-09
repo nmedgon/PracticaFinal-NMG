@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/logo.ico">
     <style>
-        .send-notification {
+        .enviar-notificacion {
             position: fixed;
             top: 20px;
             left: 50%;
@@ -21,15 +21,15 @@
             transition: opacity 0.5s ease-in-out;
         }
 
-        .send-notification.success {
+        .enviar-notificacion.success {
             background-color: #28a745; /* Verde */
         }
 
-        .send-notification.error {
+        .enviar-notificacion.error {
             background-color: #dc3545; /* Rojo */
         }
 
-        .send-notification.show {
+        .enviar-notificacion.show {
             opacity: 1;
         }
     </style>
@@ -56,7 +56,7 @@
             </ul>
         </nav>
     </header>
-    <div id="sendNotification" class="send-notification"></div>
+    <div id="enviarNotificacion" class="enviar-notificacion"></div>
     <main>
         <div class="contacto">
             <form class="formulario" id="contactForm">
@@ -109,18 +109,18 @@
  
             emailjs.send("service_r4qgha7", "template_kjki5dh", templateParams)
                 .then(function(response) {
-                    showSendNotification('Tu mensaje ha sido enviado con éxito.', 'success');
+                    showenviarNotificacion('Tu mensaje ha sido enviado con éxito.', 'success');
                 }, function(error) {
-                    showSendNotification('Hubo un error al enviar tu mensaje. Intenta de nuevo.', 'error');
+                    showenviarNotificacion('Hubo un error al enviar tu mensaje. Intenta de nuevo.', 'error');
                 });
         });
 
-        function showSendNotification(message, type) {
-            const notification = document.getElementById('sendNotification');
+        function showenviarNotificacion(message, type) {
+            const notification = document.getElementById('enviarNotificacion');
             notification.textContent = message;
 
             // Añadir clase según el tipo
-            notification.className = `send-notification ${type} show`;
+            notification.className = `enviar-notificacion ${type} show`;
 
             // Ocultar notificación después de 2 segundos
             setTimeout(() => {
