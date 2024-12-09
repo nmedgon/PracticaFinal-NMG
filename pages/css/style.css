@@ -341,6 +341,17 @@ a{
     background-color: rebeccapurple;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
 .ubicacion{
     text-align: center;
     font-size: 20px;
