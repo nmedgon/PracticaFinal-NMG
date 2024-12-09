@@ -282,6 +282,16 @@ a{
     text-align: center;
 }
 
+.contenedorX{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.contenedorX a{
+    font-weight: bold;
+    color: red;
+}
+
 .formulario {
     display: flex;
     align-items: flex-start;
@@ -361,6 +371,18 @@ td {
     margin-top: 3%;
     display: flex;
     gap: 3%;
+}
+
+.recursos{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.recursos img{
+    width: 70%;
+    box-shadow: 0px 0px 15px 5px rgba(167, 139, 250, 0.4);
 }
 
 footer{
