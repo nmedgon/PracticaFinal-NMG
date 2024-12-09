@@ -62,45 +62,54 @@
     </footer>
     <!--El script es casi igual que el de border.html, solo que en este he aplicado las sombras directamente en el div-->
     <script><!---->
-        document.querySelectorAll('.shadowstyle div').forEach(div => {
-            div.setAttribute('data-original-text', div.textContent);
-            //Cambia la sombra al pasar el ratón
-            div.addEventListener('mouseover', (e) => {
-                e.currentTarget.style.boxShadow = e.currentTarget.dataset.shadow;
-            });
-
-            //Restaura la sombra al quitar el ratón
-            div.addEventListener('mouseout', (e) => {
-                e.currentTarget.style.boxShadow = "none";
-            });
-
-            //Mostrar código CSS
-            div.addEventListener('click', (e) => {
-                const isCodeDisplayed = e.currentTarget.textContent.includes("box-shadow:");
-                if (isCodeDisplayed) {
-                    //Si ya muestra el CSS, restaurar el texto original
-                    e.currentTarget.textContent = e.currentTarget.getAttribute('data-original-text');
-                } else {
-                    //Muestra el CSS
-                    const shadowType = e.currentTarget.dataset.shadow;
-                    e.currentTarget.textContent = `box-shadow: ${shadowType};`;
-                    navigator.clipboard.writeText(e.currentTarget.textContent)
-                        .then(() => {
-                            showCopyNotification();
-                        })
-                        .catch((err) => {
-                            console.error('Error al copiar al portapapeles: ', err);
-                        });
-                }
-            });
+    document.querySelectorAll('.shadowstyle div').forEach(div => {
+        div.setAttribute('data-original-text', div.textContent);  // Guarda el texto original del div
+        div.addEventListener('mouseover', (e) => {
+            e.currentTarget.style.boxShadow = e.currentTarget.dataset.shadow;  // Cambia la sombra al pasar el ratón
         });
-        function showCopyNotification() {
-            const notification = document.getElementById('copyNotification');
-            notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 2000);
-        }
+
+        div.addEventListener('mouseout', (e) => {
+            e.currentTarget.style.boxShadow = "none";  // Restaura la sombra al quitar el ratón
+        });
+
+        div.addEventListener('click', (e) => {
+            const isCodeDisplayed = e.currentTarget.textContent.includes("box-shadow:");
+
+            // Si ya muestra el CSS, restaura el texto original
+            if (isCodeDisplayed) {
+                e.currentTarget.textContent = e.currentTarget.getAttribute('data-original-text');
+            } else {
+                // Si otro div fue clicado antes, restaurar su estado original
+                document.querySelectorAll('.shadowstyle div').forEach(otroDiv => {
+                    if (otroDiv !== e.currentTarget) {
+                        otroDiv.textContent = otroDiv.getAttribute('data-original-text');  // Restaurar texto original
+                        otroDiv.style.boxShadow = "none";  // Restaurar sombra al estado base
+                    }
+                });
+
+                // Mostrar el CSS en el div clicado
+                const shadowType = e.currentTarget.dataset.shadow;
+                e.currentTarget.textContent = `box-shadow: ${shadowType};`;
+
+                // Copiar al portapapeles
+                navigator.clipboard.writeText(e.currentTarget.textContent)
+                    .then(() => {
+                        showCopyNotification();
+                    })
+                    .catch((err) => {
+                        console.error('Error al copiar al portapapeles: ', err);
+                    });
+            }
+        });
+    });
+
+    function showCopyNotification() {
+        const notification = document.getElementById('copyNotification');
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 2000);
+    }
 
         document.querySelector('.menumovil').addEventListener('click', function() {
             const navList = document.querySelector('.navegacion');

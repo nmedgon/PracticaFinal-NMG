@@ -84,6 +84,13 @@
                     // Si ya muestra el CSS, restaura el texto original
                     e.currentTarget.textContent = e.currentTarget.getAttribute('data-original-text');
                 } else {
+                    // Si otro div fue clicado antes, restaurar su estado original
+                    document.querySelectorAll('.textstyle div').forEach(otroDiv => {
+                        if (otroDiv !== e.currentTarget) {
+                            otroDiv.textContent = otroDiv.getAttribute('data-original-text');  // Restaurar texto original
+                            otroDiv.style.boxShadow = "none";  // Restaurar sombra al estado base
+                        }
+                    });
                     // Muestra el código CSS
                     e.currentTarget.style.cssText = "initial";
                     e.currentTarget.textContent = `${e.currentTarget.dataset.code}`;

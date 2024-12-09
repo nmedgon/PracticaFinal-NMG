@@ -79,6 +79,13 @@
                     e.currentTarget.textContent = e.currentTarget.getAttribute('data-original-text');
                     e.currentTarget.style.background = e.currentTarget.dataset.gradient;
                 } else {
+                    // Si otro div fue clicado antes, restaurar su estado original
+                    document.querySelectorAll('.gradientstyle div').forEach(otroDiv => {
+                        if (otroDiv !== e.currentTarget) {
+                            otroDiv.textContent = otroDiv.getAttribute('data-original-text');  // Restaurar texto original
+                            otroDiv.style.boxShadow = "none";  // Restaurar sombra al estado base
+                        }
+                    });
                     // Muestra el CSS
                     const gradientType = e.currentTarget.dataset.gradient;
                     e.currentTarget.textContent = `background: ${gradientType};`;

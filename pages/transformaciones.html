@@ -77,6 +77,14 @@
                     //Si ya muestra el CSS, restaurar el texto original
                     e.currentTarget.textContent = e.currentTarget.getAttribute('data-original-text');
                 } else {
+                    // Si otro div fue clicado antes, restaurar su estado original
+                    document.querySelectorAll('.transformstyle div').forEach(otroDiv => {
+                        if (otroDiv !== e.currentTarget) {
+                            otroDiv.textContent = otroDiv.getAttribute('data-original-text');  // Restaurar texto original
+                            otroDiv.style.boxShadow = "none";  // Restaurar sombra al estado base
+                        }
+                    });
+
                     //Muestra el CSS
                     const transform = e.currentTarget.dataset.transform;
                     e.currentTarget.textContent = `transform: ${transform};`;

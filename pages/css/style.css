@@ -9,6 +9,10 @@ body{
     padding-bottom: 50px;
 }
 
+main{
+    text-align: center;
+}
+
 .titulo{
     background-color: #333333;
     display: flex;
@@ -219,6 +223,39 @@ a{
     cursor: pointer;
     margin: 1%;
     transition: all 0.3s ease;
+}
+
+.tablastyle {
+    margin: 5%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+}
+
+.tablastyle div {
+    border-radius: 10px;
+    background-color: #2C2C2C;
+    color: #F0F0F0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 1%;
+    transition: all 0.3s ease;
+}
+
+.tablastyle table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tablastyle th,
+.tablastyle td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.3s;
 }
 
 .inicio{
