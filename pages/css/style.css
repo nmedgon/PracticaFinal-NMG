@@ -445,6 +445,9 @@ footer img:hover{
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(6, 100px);
     }
+    .tabla{
+        font-size: 15px;
+    }
     .nosotros{
         display: inline;
     }
