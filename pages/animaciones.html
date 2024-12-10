@@ -3,36 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contáctanos</title><!--Página de contacto-->
+    <title>Animaciones</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/logo.ico">
-    <style>
-        .enviar-notificacion {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            padding: 10px;
-            transform: translateX(-50%);
-            border-radius: 5px;
-            color: white;
-            font-size: 16px;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .enviar-notificacion.success {
-            background-color: #28a745; /* Verde */
-        }
-
-        .enviar-notificacion.error {
-            background-color: #dc3545; /* Rojo */
-        }
-
-        .enviar-notificacion.show {
-            opacity: 1;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -41,15 +15,14 @@
             <h1>VisualCSS</h1>
         </div>
         <nav>
-            <button class="menumovil">☰</button><!--Botón que solo se mostrará en moviles-->
+            <button class="menumovil">☰</button>
             <ul class="navegacion">
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="border.html">Bordes</a></li>
                 <li><a href="sombras.html">Sombras</a></li>
                 <li><a href="cursor.html">Cursores</a></li>
                 <li><a href="transformaciones.html">Transformaciones</a></li>
-                <li><a href="animaciones.html">Animaciones</a></li>
-                <li><a href="texto.html">Textos</a></li>
+                <li class="seleccion"><a href="animaciones.html">Animaciones</a></li>
                 <li><a href="gradient.html">Gradiente</a></li>
                 <li><a href="tabla.html">Tabla</a></li>
                 <li><a href="recursos.html">Página de recursos</a></li>
@@ -57,27 +30,21 @@
             </ul>
         </nav>
     </header>
-    <div id="enviarNotificacion" class="enviar-notificacion"></div>
+    <div id="notificacionCopiar" class="notificacion-copiar">
+        Código copiado al portapapeles
+    </div>
     <main>
-        <div class="contacto">
-            <form class="formulario" id="contactForm">
-                <div class="contenedorX">
-                    <h2>¿Tienes algún problema o duda?</h2>
-                    <a href="../index.html">X</a>
-                </div>
-                <div class="titulo">Contáctanos</div>
-                <input type="email" id="email" placeholder="Correo electrónico" class="entrada" required>
-                <textarea id="message" placeholder="Mensaje" required></textarea>
-                <button type="submit">Enviar</button>
-            </form>
+        <div class="animationstyle">
+            <div id="bounce" data-animation="bounce 1s infinite">bounce</div>
+            <div id="flash" data-animation="flash 1s infinite">flash</div>
+            <div id="pulse" data-animation="pulse 1.5s infinite">pulse</div>
+            <div id="rubberBand" data-animation="rubberBand 1s">rubberBand</div>
+            <div id="shakeX" data-animation="shakeX 0.8s">shakeX</div>
+            <div id="swing" data-animation="swing 1s infinite">swing</div>
         </div>
-        
     </main>
-
     <footer>
-        <div>
-            &copy; NoeMG
-        </div>
+        <div>&copy; NoeMG</div>
         <div>
             <a href="https://www.instagram.com/visualcss3/"><img src="images/instagram.png" alt=""></a>
             <a href="https://x.com/visualcss3"><img src="images/twitterx.png" alt=""></a>
@@ -87,43 +54,52 @@
             <a href="contacto.html">Contacto</a>
         </div>
     </footer>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        (function() {
-            emailjs.init("LLA9RvVd2E_oAYPKt");
-        })();
+        document.querySelectorAll('.animationstyle div').forEach(div => {
+            div.setAttribute('data-original-text', div.textContent);
+            
+            // Aplica la animación al pasar el ratón
+            div.addEventListener('mouseover', (e) => {
+                const animation = e.currentTarget.dataset.animation;
+                e.currentTarget.style.animation = animation; // Aplica la animación
+            });
 
-        // Manejar el envío del formulario
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+            // Restaura la animación al quitar el ratón
+            div.addEventListener('mouseout', (e) => {
+                e.currentTarget.style.animation = ""; // Elimina la animación
+            });
 
-            // Obtener los valores del formulario
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+            // Mostrar código CSS al hacer clic
+            div.addEventListener('click', (e) => {
+                const isCodeDisplayed = e.currentTarget.textContent.includes("animation:");
+                if (isCodeDisplayed) {
+                    // Si ya muestra el CSS, restaurar el texto original
+                    e.currentTarget.textContent = e.currentTarget.getAttribute('data-original-text');
+                } else {
+                    // Restaurar otros divs al estado original
+                    document.querySelectorAll('.animationstyle div').forEach(otroDiv => {
+                        if (otroDiv !== e.currentTarget) {
+                            otroDiv.textContent = otroDiv.getAttribute('data-original-text');
+                        }
+                    });
 
-            const templateParams = {
-                email: email, // El correo electrónico ingresado
-                message: message // El mensaje ingresado
-            };
- 
-            emailjs.send("service_r4qgha7", "template_kjki5dh", templateParams)
-                .then(function(response) {
-                    showenviarNotificacion('Tu mensaje ha sido enviado con éxito.', 'success');
-                }, function(error) {
-                    showenviarNotificacion('Hubo un error al enviar tu mensaje. Intenta de nuevo.', 'error');
-                });
+                    // Muestra el CSS
+                    const animation = e.currentTarget.dataset.animation;
+                    e.currentTarget.textContent = `animation: ${animation};`;
+                    navigator.clipboard.writeText(e.currentTarget.textContent)
+                        .then(() => {
+                            shownotificacionCopiar();
+                        })
+                        .catch((err) => {
+                            console.error('Error al copiar al portapapeles: ', err);
+                        });
+                }
+            });
         });
 
-        function showenviarNotificacion(message, type) {
-            const notification = document.getElementById('enviarNotificacion');
-            notification.textContent = message;
-
-            // Añadir clase según el tipo
-            notification.className = `enviar-notificacion ${type} show`;
-
-            // Ocultar notificación después de 2 segundos
+        function shownotificacionCopiar() {
+            const notification = document.getElementById('notificacionCopiar');
+            notification.classList.add('show');
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 2000);
