@@ -85,7 +85,6 @@ a{
     color: white;
 }
 
-
 .borderstyle{
     margin: 5%;
     display: grid;
@@ -432,7 +431,6 @@ footer img:hover{
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(14, 80px);
     }
-
     .textstyle{
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(8, 80px);
@@ -454,12 +452,9 @@ footer img:hover{
     .nosotros iframe{
         width: 100%;
     }
-
-
     .menumovil {
         display: block; /* Mostrar el botón en pantallas pequeñas */
     }
-
     .navegacion {
         display: none; /* Ocultar el menú por defecto */
         flex-direction: column; /* Cambiar a columna en móviles */
@@ -469,11 +464,9 @@ footer img:hover{
         top: 50px; /* Ajustar según el diseño */
         left: 0;
     }
-
     .navegacion.show {
         display: flex; /* Mostrar el menú cuando se activa */
     }
-
     .navegacion li {
         padding: 10px; /* Espaciado para los elementos del menú */
     }
