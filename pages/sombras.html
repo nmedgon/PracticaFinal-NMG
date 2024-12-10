@@ -30,7 +30,7 @@
             </ul>
         </nav>
     </header>
-    <div id="copyNotification" class="copy-notification">
+    <div id="notificacionCopiar" class="notificacion-copiar">
         Código copiado al portapapeles
     </div>
     <main>
@@ -95,7 +95,7 @@
                 // Copiar al portapapeles
                 navigator.clipboard.writeText(e.currentTarget.textContent)
                     .then(() => {
-                        showCopyNotification();
+                        shownotificacionCopiar();
                     })
                     .catch((err) => {
                         console.error('Error al copiar al portapapeles: ', err);
@@ -104,8 +104,8 @@
         });
     });
 
-    function showCopyNotification() {
-        const notification = document.getElementById('copyNotification');
+    function shownotificacionCopiar() {
+        const notification = document.getElementById('notificacionCopiar');
         notification.classList.add('show');
         setTimeout(() => {
             notification.classList.remove('show');
