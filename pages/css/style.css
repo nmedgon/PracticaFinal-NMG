@@ -426,11 +426,6 @@ td {
     transition: all 0.3s ease;
 }
 
-.ubicacion{
-    text-align: center;
-    font-size: 20px;
-}
-
 .nosotros{
     margin-top: 3%;
     display: flex;
